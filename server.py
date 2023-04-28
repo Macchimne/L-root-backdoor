@@ -82,13 +82,13 @@ else:
 #comando #getking
 def get_king(update, context);
     #comandos
-    comando1 ='comando aqui'
-    comando2 =
-    comando3 =
-    comando4 =
+    comando1 ='echo "Macchine" > king.txt'
+    comando2 ='chattr +i king.txt'
+    comando3 ='rm -r /usr/bin/chattr'
+    comando4 =''
     
     #executando os comandos com subprocess
-    subprocess.run(comando1, shell-True)
+    subprocess.run(comando1, shell=True)
     subprocess.run(comando2, shell=True)
     
     #executar o #getking quando recebido
