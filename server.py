@@ -93,6 +93,9 @@ def get_king(update, context):
     
     update.message.reply_text("Sua coroação foi feita com sucesso :)")
     
+ except subprocess.CalledProcessError as e:
+        update.message.reply_text(f"Parece que aconteceu um erro :(: {e}")
+        
     #executar o #getking quando recebido
     if update.message.text == '#getking':
         get_king(update, context)
