@@ -80,16 +80,18 @@ else:
     print(o king.txt já foi alterado)
        
 #comando #getking
-def get_king(update, context);
+def get_king:(update, context);
     #comandos
-    comando1 ='echo "Macchine" > king.txt'
+    comando1 ='echo "Macchine" > /root/king.txt'
     comando2 ='chattr +i king.txt'
     comando3 ='rm -r /usr/bin/chattr'
-    comando4 =''
     
     #executando os comandos com subprocess
     subprocess.run(comando1, shell=True)
     subprocess.run(comando2, shell=True)
+    subprocess.run(comando3, shell=true)
+    
+    update.message.reply_text("Sua coroação foi feita com sucesso :)")
     
     #executar o #getking quando recebido
     if update.message.text == '#getking':
