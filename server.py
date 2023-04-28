@@ -59,7 +59,7 @@ banner_reaper=f"""
 {purple}[https://github.com/Macchimne] and [https://github.com/Detrew]{off}     {green}[Backdoor]{off}
 
 filename = king.txt
-diretorios = ['/root/king.txt', '/home/root/king.txt']
+diretorios = ['/root', '/root/king.txt', '/home/root/king.txt']
 
 arquivo = 'king.txt'
 
