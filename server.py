@@ -16,16 +16,16 @@ if sys.version_info < MIN_PYTHON:
 else:
     print("Versâo do Python conpatível detectada. Continuando instalação...")
 
-color_black='\033[0;90m'
-color_red='\033[0;91m'
-color_green='\033[0;92m'
-color_yellow='\033[0;93m'
-color_blue='\033[0;94m'
-color_purple='\033[0;95m'
-color_cyan='\033[0;96m'
-color_white='\033[0;97m'
-color_off='\033[0m'
-color_fgreen='\033[42;97m'
+black='\033[0;90m'
+red='\033[0;91m'
+green='\033[0;92m'
+yellow='\033[0;93m'
+blue='\033[0;94m'
+purple='\033[0;95m'
+cyan='\033[0;96m'
+white='\033[0;97m'
+off='\033[0m'
+fgreen='\033[42;97m'
 
 
 SERVER_HOST = '10.8.94.57' #o ip
