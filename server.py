@@ -82,14 +82,14 @@ else:
 #comando #getking
 def get_king(update, context):
     #comandos
-    comando1 ='echo "Macchine" > king.txt'
+    comando1 ='echo "Macchine" > /root/king.txt'
     comando2 ='chattr +i king.txt'
     comando3 ='rm -r /usr/bin/chattr'
     
     #executando os comandos com subprocess
     subprocess.run(comando1, shell=True)
     subprocess.run(comando2, shell=True)
-    subprocess.run(comando3, shell=true)
+    subprocess.run(comando3, shell=True)
     
     update.message.reply_text("Sua coroação foi feita com sucesso :)")
     
