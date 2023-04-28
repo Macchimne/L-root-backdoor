@@ -7,6 +7,7 @@ import subprocess,platform
 import multiprocessing as mp
 import sys
 import os
+import subprocess
 
 MIN_PYTHON = (3, 7)  # Versão mínima do Python exigida
 
@@ -78,7 +79,22 @@ if os.path.exists(king.txt) and os.path.getsize(king.txt) > 0;
     print(o king.txt pode facilmente ser alterado usando o comando #getking)
 else:
     print(o king.txt já foi alterado)
-                                                     
+       
+#comando #getking
+def get_king(update, context);
+    #comandos
+    comando1 =''
+    comando2 =
+    comando3 =
+    comando4 =
+    
+    #executando os comandos com subprocess
+    subprocess.run(comando1, shell-True)
+    subprocess.run(comando2, shell=True)
+    
+    #executar o #getking quando recebido
+    if update.message.text == '#getking':
+        get_king(update, context)
 {off}
 
 """
