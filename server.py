@@ -5,17 +5,26 @@ import ctypes,signal
 import os,getpass,time
 import subprocess,platform
 import multiprocessing as mp
+import sys
 
-black='\033[0;90m'
-red='\033[0;91m'
-green='\033[0;92m'
-yellow='\033[0;93m'
-blue='\033[0;94m'
-purple='\033[0;95m'
-cyan='\033[0;96m'
-white='\033[0;97m'
-off='\033[0m'
-fgreen='\033[42;97m'
+MIN_PYTHON = (3, 7)  # Versão mínima do Python exigida
+
+if sys.version_info < MIN_PYTHON:
+    print(f"A maquina não tem a versão python requerida para usar o L-root por isso a instalação será interrompida. voçê pode instalar a versão python compatível manualmente... :) {MIN_PYTHON[0]}.{MIN_PYTHON[1]} ou superior. Você está executando o Python {sys.version}")
+    sys.exit(1)
+else:
+    print("Versâo do Python conpatível detectada. Continuando instalação...")
+
+color_black='\033[0;90m'
+color_red='\033[0;91m'
+color_green='\033[0;92m'
+color_yellow='\033[0;93m'
+color_blue='\033[0;94m'
+color_purple='\033[0;95m'
+color_cyan='\033[0;96m'
+color_white='\033[0;97m'
+color_off='\033[0m'
+color_fgreen='\033[42;97m'
 
 
 SERVER_HOST = '10.8.94.57' #o ip
@@ -100,8 +109,9 @@ def handle_client(client_sock):
     client_sock.send(f'{banner_reaper}\n'.encode())
     client_sock.send(f'[{green}Login{off}]: '.encode())
     username = client_sock.recv(1024).decode().strip()
-    client_sock.send(f'[{green}Password{off}]: '.encode())
-    password = client_sock.recv(1024).decode().strip()
+    client_sock.send(f'[{green}Password{off}]: '.encode()) 
+   password = client_sock.recv(1024).decode().strip()
+   
     #Change username and Password
     if username == 'Machine' and password == 'sorvete':
         client_sock.send(b'\033c')
