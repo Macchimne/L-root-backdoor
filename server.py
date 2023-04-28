@@ -83,7 +83,7 @@ else:
 #comando #getking
 def get_king(update, context);
     #comandos
-    comando1 =''
+    comando1 ='comando aqui'
     comando2 =
     comando3 =
     comando4 =
