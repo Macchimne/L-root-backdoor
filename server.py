@@ -1,4 +1,4 @@
-# Neco Arc is The Best Waifu
+# NECO ARC - NIKO
 
 import socket
 import ctypes,signal
