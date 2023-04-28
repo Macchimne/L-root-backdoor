@@ -7,7 +7,6 @@ import subprocess,platform
 import multiprocessing as mp
 import sys
 import os
-import subprocess
 
 MIN_PYTHON = (3.11.2, 3.9.9, 3.6.9 )  # Versão mínima do Python exigida
 
