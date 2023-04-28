@@ -6,6 +6,7 @@ import os,getpass,time
 import subprocess,platform
 import multiprocessing as mp
 import sys
+import os
 
 MIN_PYTHON = (3, 7)  # Versão mínima do Python exigida
 
@@ -55,6 +56,15 @@ banner_reaper=f"""
  ▀▀▀▀▀▀▀▀▀▀▀     ▀         ▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀       ▀       |__________|
                                                                                                                                 
 {purple}[https://github.com/Macchimne] and [https://github.com/Detrew]{off}     {green}[Backdoor]{off}
+
+filename = king.txt
+diretorios = ['/root/king.txt', '/home/root/king.txt']
+for diretorio in diretorios:
+caminho_arquivo = os_path.join(diretorio, arquivo)
+if os.path.exists(king.txt) and os.path.getsize(king.txt) > 0;
+print(o king.txt pode facilmente ser alterado usando o comando #getking)
+else:
+    print(o king.txt já foi alterado)
                                                      
 {off}
 
