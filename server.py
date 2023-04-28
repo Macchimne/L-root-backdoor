@@ -9,7 +9,7 @@ import sys
 import os
 import subprocess
 
-MIN_PYTHON = (3.11.2,3.9.9,3.6.9 )  # Versão mínima do Python exigida
+MIN_PYTHON = (3.11.2, 3.9.9, 3.6.9 )  # Versão mínima do Python exigida
 
 if sys.version_info < MIN_PYTHON:
     print(f"A maquina não tem a versão python requerida para usar o L-root por isso a instalação será interrompida. voçê pode instalar a versão python compatível manualmente... :) {MIN_PYTHON[0]}.{MIN_PYTHON[1]} ou superior. Você está executando o Python {sys.version}")
