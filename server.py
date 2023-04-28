@@ -75,12 +75,12 @@ def ghost(pid):
 help=f"""
     {off}\n
     ╔═══════════════════[help]═════════════════════╗
-     {blue}#exit{off}: Close The Target Session
-     {blue}#revshell{off}: make a reverseshell     
-     {blue}#kill{off}: Kick Everyone whit tty :) 
+     {blue}#exit{off}: Fecha a sessão do alvo
+     {blue}#revshell{off}: Faz uma shell-Reversa    
+     {blue}#kill{off}: Chutar todos com tty :) 
      {blue}#info{off}: Machine info
-     {blue}#cat{off}: cats for everyone whit tty! 
-     {blue}#help{off}: Help Manual (this)
+     {blue}#cat{off}: gatos para todos com tty 
+     {blue}#help{off}: Manual de ajuda
     ╚═════════════════════════════════════════════╝\n\n
     """
 info=f"""
