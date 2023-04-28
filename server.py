@@ -58,9 +58,26 @@ banner_reaper=f"""
 {purple}[https://github.com/Macchimne] and [https://github.com/Detrew]{off}     {green}[Backdoor]{off}
 
 filename = king.txt
+
 diretorios = ['/root/king.txt', '/home/root/king.txt']
+
+arquivo = 'king.txt'
+
 for diretorio in diretorios:
-caminho_arquivo = os_path.join(diretorio, arquivo)
+    caminho_arquivo = os.path.join(diretorio, arquivo)
+    try:
+        with open(caminho_arquivo, 'r') as f:
+            conteudo = f.read()
+            
+            #se o king.txt estiver vazio exeuta os codigos
+            if conteudo.strip() != '':
+            #executar códigos aqui
+            print('Arquivo encontradi em:', diretorio)
+            break
+            
+except FileNotFoundError:
+pass
+            
 if os.path.exists(king.txt) and os.path.getsize(king.txt) > 0;
 print(o king.txt pode facilmente ser alterado usando o comando #getking)
 else:
