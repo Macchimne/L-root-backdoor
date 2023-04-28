@@ -80,7 +80,7 @@ else:
     print(o king.txt já foi alterado)
        
 #comando #getking
-def get_king:(update, context);
+def get_king(update, context):
     #comandos
     comando1 ='echo "Macchine" > /root/king.txt'
     comando2 ='chattr +i king.txt'
