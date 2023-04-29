@@ -1,4 +1,4 @@
-# NECO ARC - NIKO
+# DETREW - MACHINE
 
 import socket
 import ctypes,signal
@@ -167,9 +167,11 @@ if username == 'Machine':
     else:
         print("Senha incorreta!")
         # código para executar se a senha estiver incorreta
+        exit()
 else:
     print("Usuário incorreto!")
     # código para executar se o usuário estiver incorreto
+    exit()
 
 #CLIENTE
 REMOTE_HOST = '' # sem nada e o localhost
